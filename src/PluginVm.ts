@@ -233,11 +233,6 @@ export class PluginVm {
 		if (requiredName.startsWith(".") || path.isAbsolute(requiredName)) {
 			const fullPath = path.resolve(moduleDirName, requiredName);
 
-			// for security reason check to not load external files
-			if (!fullPath.startsWith(pluginContext.location)) {
-				throw new Error("Cannot require a module outside a plugin");
-			}
-
 			const isFile = this.tryResolveAsFile(fullPath);
 			if (isFile) {
 				return isFile;
